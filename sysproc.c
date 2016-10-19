@@ -89,3 +89,12 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+// Shutdown system call
+int
+sys_shutdown(void)
+{
+  cprintf("Shutdown signal sent\n");
+  outw(0xB004, 0x0 | 0x2000);
+  return 0;
+}
